@@ -1,14 +1,14 @@
-import { create } from "lodash";
+import { add, create } from "lodash";
 import React, { createContext, useReducer } from "react";
-import AppReducer from './AppReducer';
+import { AppReducer } from './AppReducer';
 
 // INITIAL STATE
 const initialState = {
     transactions: [
-        { id: 1, text: 'Flower', amount: -20 },
-        { id: 2, text: 'Salary', amount: 300 },
-        { id: 3, text: 'Book', amount: -10 },
-        { id: 4, text: 'Camera', amount: 150 }
+        // { id: 1, text: 'Flower', amount: -20 },
+        // { id: 2, text: 'Salary', amount: 300 },
+        // { id: 3, text: 'Book', amount: -10 },
+        // { id: 4, text: 'Camera', amount: 150 }
     ]
 }
 
@@ -27,9 +27,17 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    function addTransaction(transaction){
+        dispatch({
+            type: 'ADD_TRANSACTION',
+            payload: transaction
+        });
+    }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
-        deleteTransaction
+        deleteTransaction,
+        addTransaction
     }}>
         {children}
     </GlobalContext.Provider>);
